@@ -3,27 +3,11 @@
   "description": "This incident type refers to an issue where communication between Etcd members is slowing down, resulting in a decrease in the performance of the Etcd system. The incident is triggered when the 99th percentile of communication time exceeds 0.15 seconds. This type of incident can impact the functionality and stability of the Etcd system, and requires immediate attention to restore normal operation.",
   "params": [
     {
-      "name": "NEW_NODE_MEMORY",
-      "value": ""
-    },
-    {
-      "name": "ETCD_MEMBERS_LIST",
-      "value": ""
-    },
-    {
-      "name": "ETCD_PORT",
-      "value": ""
-    },
-    {
-      "name": "ETCD_MEMBER_IP",
-      "value": ""
-    },
-    {
       "name": "ETCD_ENDPOINTS",
       "value": ""
     },
     {
-      "name": "NETWORK_INTERFACE",
+      "name": "NEW_NODE_MEMORY",
       "value": ""
     },
     {
@@ -31,7 +15,23 @@
       "value": ""
     },
     {
+      "name": "ETCD_PORT",
+      "value": ""
+    },
+    {
+      "name": "NETWORK_INTERFACE",
+      "value": ""
+    },
+    {
       "name": "NEW_NODE_CPU",
+      "value": ""
+    },
+    {
+      "name": "ETCD_MEMBER_IP",
+      "value": ""
+    },
+    {
+      "name": "ETCD_MEMBERS_LIST",
       "value": ""
     },
     {
@@ -184,7 +184,7 @@
       "name": "cell_23",
       "type": "OP_LANG",
       "enabled": true,
-      "content": "host | host_name=$HOST_NAME | invoke_etcd_traffic_check($ETCD_MEMBERS_LIST, $ETCD_PORT)"
+      "content": "host | host_name=$HOST_NAME | invoke_net_traffic_check($ETCD_PORT, $ETCD_MEMBERS_LIST)"
     },
     {
       "name": "cell_24",
@@ -196,7 +196,7 @@
       "name": "cell_25",
       "type": "OP_LANG",
       "enabled": true,
-      "content": "host | host_name=$HOST_NAME | invoke_increase_etcd_cluster_resources($NEW_NODE_MEMORY, $NEW_NODE_COUNT, $NEW_NODE_CPU)"
+      "content": "host | host_name=$HOST_NAME | invoke_etcd_cluster_resources($NEW_NODE_MEMORY, $NEW_NODE_COUNT, $NEW_NODE_CPU)"
     }
   ]
 }
